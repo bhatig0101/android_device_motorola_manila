@@ -1,0 +1,13 @@
+# INITIAL / EXPERIMENTAL recovery fstab for Motorola manila.
+# Logical partitions use mapper paths; slot-suffixed boot partitions use by-name.
+# Validate against stock fstab and /dev/block/by-name before any destructive operation.
+/system          ext4    /dev/block/mapper/system          flags=display="System";logical;backup=1
+/system_ext      ext4    /dev/block/mapper/system_ext      flags=display="System Ext";logical;backup=1
+/product         ext4    /dev/block/mapper/product         flags=display="Product";logical;backup=1
+/vendor          ext4    /dev/block/mapper/vendor          flags=display="Vendor";logical;backup=1
+/odm             ext4    /dev/block/mapper/odm             flags=display="ODM";logical;backup=1
+/data            f2fs    /dev/block/by-name/userdata       flags=display="Data";backup=1;wipeingui
+/metadata        ext4    /dev/block/by-name/metadata       flags=display="Metadata";backup=1
+/boot            emmc    /dev/block/by-name/boot           flags=display="Boot";slotselect;backup=1
+/vendor_boot     emmc    /dev/block/by-name/vendor_boot    flags=display="Vendor Boot";slotselect;backup=1
+/dtbo            emmc    /dev/block/by-name/dtbo           flags=display="DTBO";slotselect;backup=1
